@@ -1,3 +1,4 @@
+{
 "builders": [
     {
       "boot_command": [
@@ -16,16 +17,16 @@
       ],
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
-      "iso_checksum": "0f433162c0ba7b845b06a9cb3c64768b88da1ddf9fb921b65de2a055fb7453f7",
-      "iso_url": "http://mirror.linux-ia64.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20220603-boot.iso",
+      "iso_checksum": "a96b15fdea3842de667b2472ee10842db6bd1ec9a7e76f58541b5b0d59433349",
+      "iso_url": "http://mirror.linux-ia64.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20221005-boot.iso",
       "name": "{{user `image_name`}}",
       "output_directory": "builds",
-      "shutdown_command": "sudo -S /sbin/halt -h -p",
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
       "shutdown_timeout": "5m",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_pty": true,
-      "ssh_timeout": "20m",
+      "ssh_timeout": "240m",
       "ssh_username": "vagrant",
       "type": "virtualbox-iso",
       "vboxmanage": [
@@ -54,7 +55,7 @@
   ],
   "provisioners": [
     {
-      "execute_command": "{{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
       "expect_disconnect": true,
       "override": {
         "{{user `image_name`}}": {
