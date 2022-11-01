@@ -93,32 +93,40 @@ stage-1-kernel-update.sh
 stage-2-clean.sh
 ks.cfg 
 
-Запустил создание образа packer build centos.json
-
+Запустил создание образа 
+```
+packer build centos.json
+```
 Были выявлены и исправлены ошибки
 
 
 в ks.cfg 
 
 Ошибка несуществующая опция
-поменял firewall -disabled на firewall --disabled
+
+**поменял firewall -disabled на firewall --disabled**
 
 в centos.json
 
 Ошибка 404 при попытке скачать ISO
-Поменял устаревшую ссылку на скачивание iso и соответственно cheksum
+
+**Поменял устаревшую ссылку на скачивание iso и соответственно cheksum**
 
 Синтаксическая ошибка
-добавил "{" в начале файла
+
+**добавил "{" в начале файла**
 
 Скрипт ожидал вода пароля для sudo
-"execute_command": "{{.Vars}} sudo -S -E bash '{{.Path}}'", заменил на "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-"shutdown_command": sudo -S /sbin/halt -h -p", заменил на "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
+
+*"execute_command": "{{.Vars}} sudo -S -E bash '{{.Path}}'"*, **заменил на** *"execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",*
+
+*\*"shutdown_command": sudo -S /sbin/halt -h -p",* **заменил на** *"shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",*
 
 в stage-1-kernel-update.sh
 
 Скрипт и так выполняется под sudo
-убрал sudo в строке "yum install -y https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm"
+
+**убрал sudo в строке "yum install -y https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm"**
 
 Процесс завершился успешно
 ```
